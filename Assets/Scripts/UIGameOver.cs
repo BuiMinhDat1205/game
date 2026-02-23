@@ -11,8 +11,12 @@ public class UIGameOver : MonoBehaviour
 
     void Awake()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        ASM_MN = FindObjectOfType<ASM_MN>();
+        scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
+        ASM_MN = FindFirstObjectByType<ASM_MN>();
+
+        Debug.Log("scoreText: " + scoreText);
+        Debug.Log("scoreKeeper: " + scoreKeeper);
+        Debug.Log("ASM_MN: " + ASM_MN);
     }
 
     void Start()

@@ -33,5 +33,19 @@ public class UIGameOver : MonoBehaviour
 
         // Xuất danh sách người chơi (YC2)
         ASM_MN.YC2();
+        // Xuất người chơi có điểm thấp hơn người chơi hiện tại (YC3)
+        ASM_MN.Instance.YC3(playerScore);
+
+        // Tìm thông tin người chơi theo ID (YC4)
+        ASM_MN.Instance.YC4(playerId);
+
+        // Xuất danh sách người chơi theo score giảm dần (YC5)
+        ASM_MN.Instance.YC5();
+
+        // Xuất 5 người chơi có score thấp nhất (YC6)
+        ASM_MN.Instance.YC6();
+
+        // Tính và lưu điểm trung bình theo Region vào file (YC7)
+        ASM_MN.Instance.YC7();
     }
 }

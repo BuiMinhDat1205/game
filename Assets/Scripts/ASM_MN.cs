@@ -78,31 +78,68 @@ public class ASM_MN : Singleton<ASM_MN>
             Debug.Log($"ID:{player.Id}, Name:{player.Name}, Score:{player.Score}, Region:{player.Region.Name}, Rank:{rank}");
         }
     }
-    public void YC3()
+    // YC3: Player có score < currentScore
+    public void YC3(int currentScore)
     {
-        // sinh viên viết tiếp code ở đây
+        Debug.Log("YC3 | Player có score thấp hơn:");
+
+        foreach (var player in listPlayer.Where(p => p.Score < currentScore))
+        {
+            Debug.Log($"ID: {player.Id}, Name: {player.Name}, Score: {player.Score}");
+        }
     }
-    public void YC4()
+    // YC4: Tìm player theo ID
+    public void YC4(int currentId)
     {
-        // sinh viên viết tiếp code ở đây
+        var player = listPlayer.FirstOrDefault(p => p.Id == currentId);
+
+        if (player != null)
+        {
+            Debug.Log($"YC4 | ID: {player.Id}, Name: {player.Name}, Score: {player.Score}, Region: {player.Region.Name}");
+        }
+        else
+        {
+            Debug.Log("YC4 | Không tìm thấy player");
+        }
     }
+    // YC5: Sắp xếp score giảm dần
     public void YC5()
     {
-        // sinh viên viết tiếp code ở đây
+        Debug.Log("YC5 | Danh sách theo score giảm dần:");
+
+        foreach (var player in listPlayer.OrderByDescending(p => p.Score))
+        {
+            Debug.Log($"ID: {player.Id}, Name: {player.Name}, Score: {player.Score}");
+        }
     }
+    // YC6: 5 player score thấp nhất
     public void YC6()
     {
-        // sinh viên viết tiếp code ở đây
+        Debug.Log("YC6 | Top 5 score thấp nhất:");
+
+        foreach (var player in listPlayer.OrderBy(p => p.Score).Take(5))
+        {
+            Debug.Log($"ID: {player.Id}, Name: {player.Name}, Score: {player.Score}");
+        }
     }
+    // YC7: Tính điểm trung bình theo Region và lưu file
     public void YC7()
     {
-        // sinh viên viết tiếp code ở đây
-    }
-    void CalculateAndSaveAverageScoreByRegion()
-    {
-        // sinh viên viết tiếp code ở đây
-    }
+        Debug.Log("YC7 | Điểm trung bình theo Region:");
 
+        var result = listPlayer
+            .GroupBy(p => p.Region.Name)
+            .Select(g => new
+            {
+                Region = g.Key,
+                AvgScore = g.Average(p => p.Score)
+            });
+
+        foreach (var item in result)
+        {
+            Debug.Log($"Region: {item.Region}, Avg Score: {item.AvgScore}");
+        }
+    }
 }
 
 [SerializeField]
